@@ -1,5 +1,6 @@
 package com.apiTransporte.Gereciamento.domain.vehicle;
 
+import com.apiTransporte.Gereciamento.dtos.VehicleDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +27,11 @@ public class Vehicle {
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
+
+    public Vehicle(VehicleDTO data) {
+        this.placa = data.placa();
+        this.marca = data.marca();
+        this.ano = data.ano();
+        this.status = data.status();
+    }
 }
