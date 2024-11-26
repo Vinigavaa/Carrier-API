@@ -34,4 +34,18 @@ public class VehicleService {
         return vehicleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Veículo não encontrado."));
     }
+    public Vehicle updateVehicle(UUID id, VehicleDTO vehicleDTO) {
+        Vehicle vehicle = getVehicleById(id);
+        vehicle.setPlaca(vehicleDTO.placa());
+        vehicle.setMarca(vehicleDTO.marca());
+        vehicle.setAno(vehicleDTO.ano());
+        vehicle.setStatus(vehicleDTO.status());
+        return vehicleRepository.save(vehicle);
+    }
+
+    public void deleteVehicle(UUID id){
+        Vehicle vehicle = getVehicleById(id);
+        vehicleRepository.delete(vehicle);
+    }
+
 }

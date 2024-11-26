@@ -29,10 +29,23 @@ public class VehicleController {
         return new ResponseEntity<>(vehicles, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}") //  /api/evento/12o13y23y-3123-rewre321
+    @GetMapping("/{id}")
     public ResponseEntity<Vehicle> getVehicleById(@PathVariable("id")UUID id){
         Vehicle vehicle = this.vehicleService.getVehicleById(id);
         return ResponseEntity.ok(vehicle);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(
+            @PathVariable("id") UUID id, @RequestBody VehicleDTO vehicleDTO) {
+        Vehicle updatedVehicle = this.vehicleService.updateVehicle(id, vehicleDTO);
+        return ResponseEntity.ok(updatedVehicle);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable("id")UUID id){
+        this.vehicleService.deleteVehicle(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
