@@ -6,6 +6,10 @@ import com.apiTransporte.Gereciamento.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class VehicleService {
 
@@ -20,5 +24,14 @@ public class VehicleService {
 
     public void saveVehicle(Vehicle vehicle){
         this.vehicleRepository.save(vehicle);
+    }
+
+    public List<Vehicle> getAllVehicles(){
+        return this.vehicleRepository.findAll();
+    }
+
+    public Vehicle getVehicleById(UUID id) {
+        return vehicleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Veículo não encontrado."));
     }
 }
