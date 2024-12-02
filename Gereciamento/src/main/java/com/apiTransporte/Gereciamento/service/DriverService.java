@@ -7,6 +7,9 @@ import com.apiTransporte.Gereciamento.repositories.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class DriverService {
     @Autowired
@@ -19,5 +22,26 @@ public class DriverService {
 
     public void saveDriver(Driver driver){
         this.driverRepository.save(driver);
+    }
+
+    public List<Driver> getAllDrivers() {
+        return this.driverRepository.findAll();
+    }
+
+    public Driver getDriverById(UUID id) {
+        return driverRepository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Motorista não encontrado."));
+    }
+
+    public Driver updateDriver(UUID id, DriverDTO driverDTO) {
+        Driver driver = getDriverById(id);
+        driver.setName(driverDTO.name());
+        driver.setCnh(driverDTO.cnh());
+        driver.setPhone(driverDTO.phone());
+        return driverRepository.save(driver);
+    }
+
+    public void deleteDriver(UUID id) {
+        driverRepository.deleteById(id);
     }
 }
