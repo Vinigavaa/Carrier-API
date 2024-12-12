@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Vehicle {
     @Id
-    @GeneratedValue UUID id;
+    @GeneratedValue UUID id; //id
 
     private String placa;
 

@@ -44,4 +44,5 @@ public class DriverService {
     public void deleteDriver(UUID id) {
         driverRepository.deleteById(id);
     }
+
 }
