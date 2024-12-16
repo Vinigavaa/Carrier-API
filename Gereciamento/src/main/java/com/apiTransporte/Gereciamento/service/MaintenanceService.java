@@ -1,6 +1,7 @@
 package com.apiTransporte.Gereciamento.service;
 
 import com.apiTransporte.Gereciamento.domain.maintenance.Maintenance;
+import com.apiTransporte.Gereciamento.domain.vehicle.Vehicle;
 import com.apiTransporte.Gereciamento.dtos.MaintenanceDTO;
 import com.apiTransporte.Gereciamento.repositories.MaintenanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class MaintenanceService {
         maintenance.setCost(maintenanceDTO.cost());
         maintenance.setDate(maintenanceDTO.date());
         return maintenanceRepository.save(maintenance);
+    }
+
+    public void deleteMaintenance(UUID id){
+        Maintenance maintenance = getMaintenanceById(id);
+        maintenanceRepository.delete(maintenance);
     }
 }

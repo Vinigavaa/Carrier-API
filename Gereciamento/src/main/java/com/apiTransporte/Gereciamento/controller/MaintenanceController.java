@@ -43,4 +43,11 @@ public class MaintenanceController {
         return ResponseEntity.ok(updatedMaintenace);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMaintenance(@PathVariable("id")UUID id){
+        this.maintenanceService.deleteMaintenance(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
